@@ -6,6 +6,7 @@
  */
 
 #include <cstdlib>
+#include "Parser.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
+    Parser parser("advent.dat");
     return 0;
 }
 
