@@ -1,0 +1,14 @@
+*~
+*.o
+*.obj
+nbproject
+.cproject
+.project
+output/*.o
+output/*.obj
+\#*
+*.gch
+output/\#*
+output/*.gch
+.metadata
+.DS_Store
