@@ -1,6 +1,6 @@
 COMPILER = g++
 SOURCES = main.cpp
-APP = a.out
+APP = output/advent
 OBJECTS = $(SOURCES:.cpp=.o)
 
 
