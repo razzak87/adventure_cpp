@@ -1,21 +1,12 @@
-/* 
- * File:   main.cpp
- * Author: rajib
- *
- * Created on November 15, 2011, 6:01 AM
- */
+#include <iostream>
+#include <stdlib.h>
 
-#include <cstdlib>
-#include "Parser.h"
 
-using namespace std;
+int 
+main() {
 
-/*
- * 
- */
-int main(int argc, char** argv) {
-
-    Parser parser("advent.dat");
-    return 0;
+    std::cout << "Hello world";
+    
+    return EXIT_SUCCESS;
 }
 
