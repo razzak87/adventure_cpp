@@ -1,5 +1,5 @@
 COMPILER = g++
-SOURCES = main.cpp
+SOURCES = main.cpp Parser.cpp
 APP = output/advent
 OBJECTS = $(SOURCES:.cpp=.o)
 

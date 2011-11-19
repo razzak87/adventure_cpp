@@ -1,11 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
+#include "Parser.h"
 
-
-int 
+int
 main() {
-
-    std::cout << "Hello world";
+    std::cout << "Application starting " << std::endl;
+    Parser p("advent.dat");
+    //p.display();
     
     return EXIT_SUCCESS;
 }
