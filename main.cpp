@@ -1,12 +1,13 @@
-#include <iostream>
-#include <stdlib.h>
 #include "Parser.h"
+#include <cstdlib>
 
-int
-main() {
-    std::cout << "Application starting " << std::endl;
+
+int main() {
+    cout << "Application starting " << std::endl;
     Parser p("advent.dat");
-    //p.display();
+    
+    for(int i=1; i < 141 ;i++)
+        cout << p.locations[i] << endl;
     
     return EXIT_SUCCESS;
 }
