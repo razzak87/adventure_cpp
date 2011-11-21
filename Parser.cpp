@@ -16,7 +16,6 @@ Parser::Parser(string fileName) {
     ifstream dataFile;
     string line;
     string data;
-    int section_number_remover=0;
     
     int section = 1;
     
