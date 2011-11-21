@@ -22,7 +22,7 @@ public:
     string short_clue;
     
 public:
-    Node();
+    Node(string clue);
     ~Node();
     void set_north(Node* north);
     void set_south(Node* south);
@@ -36,7 +36,10 @@ public:
     
     void set_clue(string clue);
     void set_short_clue(string short_clue);
-    void set_short_clue(string short_clue);
+    
+    string get_clue();
+    
+    void append(string);
     
     
 };

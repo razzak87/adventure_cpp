@@ -12,42 +12,49 @@
 
 
 Parser::Parser(string fileName) {
-    
+
     ifstream dataFile;
     string line;
     string data;
-    
-    int section = 1;
-    
+
+
+    for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
+
+    int section = 0;
+
     dataFile.open(fileName.c_str());
 
     if(!dataFile.eof()){
         while(getline(dataFile,line)){
-            data += line + END_LINE; 
-            
+            data += line + END_LINE;
+
             int first_number = getFirstNumberOf(line);
-            
-     
+
+            if(SEPARATOR == first_number){
+               section++;
+            }
+
             switch(section){
-                case LONG_DESC_SECTION: 
+                case LONG_DESC_SECTION:
                     parse_locations(line, first_number);
                     break;
                 case SHORT_DESC_SECTION:
                     break;
-                case TRAVEL_TABLE: 
+                case TRAVEL_TABLE:
                     break;
-                case VOCABULARY: 
+                case VOCABULARY:
+                    cout << line << endl;
                     parse_vocabulary(line);
                     break;
-                case ELEMENT_DESC: 
+                case ELEMENT_DESC:
                     break;
-                case ELEMENT_LOCATION: 
+                case ELEMENT_LOCATION:
                     break;
-                case ABBR_MSG: 
+                case ABBR_MSG:
                     break;
-                case ACTIONS: 
+                case ACTIONS:
                     break;
-                case LIQUID_ASSET: 
+                case LIQUID_ASSET:
                     break;
                 case CLASS_MSG:
                     break;
@@ -56,18 +63,10 @@ Parser::Parser(string fileName) {
                 case MAGIC_WORDS:
                     break;
             }//endSwitch
-            
-            if (SEPARATOR == first_number){
-                section++;
-            }      
-            
         }//endWhile
-        
-        
-                
         dataFile.close();
     }
-    
+
 }
 
 Parser::~Parser() {
@@ -85,27 +84,26 @@ int Parser::getFirstNumberOf(string line){
 
 
 void Parser::parse_locations(string line, int first_number ){
-    
+
     size_t tab_ends = line.find_first_of("\t") + 1; //END of that TAB CHAR
-    
+
     string direction = line.substr( tab_ends);
-    
-    if(!direction.empty() && direction != "1"){
-        if(!this->locations[first_number].empty()){
-            this->locations[first_number]+=direction;
+    if(!direction.empty()){
+        if(locations[first_number]==NULL){
+            locations[first_number]= new Node(direction);
         }else{
-            this->locations[first_number]=direction;
+            locations[first_number]->append(direction);
         }
     }
 }
 
 
 void Parser::parse_vocabulary(string line){
-      
+
     size_t tab = line.find_first_of("\t");
     int value  = atoi(line.substr(0,tab).c_str());
-    string key = line.substr(tab+1); 
-    
+    string key = line.substr(tab+1);
+
     if(key!="4") //for removing the section number
         this->vocabulary[key]=value;
 }

@@ -1,19 +1,20 @@
 #include <iostream>
+#include "Parser.h"
 #include "Player.h"
+#include "Node.h"
 #include <cstdlib>
+
 using namespace std;
 
 
 int main() {
-    cout << "Application starting " << std::endl;
-    Player rajib();
-    cout << rajib->get_info() << endl;
-    
-    //cout << rajib.get_info();
-    
-//    for(int i=1; i < 141 ;i++)
-//        cout << p.locations[i] << endl;
-    
+    cout << "Application starting " << endl;
+    Parser p("advent.dat");
+
+    for(int i=1; i < 140; i++){
+      //cout << p.locations[i]->get_clue() <<endl;
+      //cout << "--" << endl;
+    }
     return EXIT_SUCCESS;
 }
 

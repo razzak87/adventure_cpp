@@ -8,12 +8,13 @@
 #ifndef PLAYER_H
 #define	PLAYER_H
 #include <iostream>
-
 using namespace std;
 
 class Player {
+    
 public:
     int max_items;
+private:
     string name;
     int score;
     int current_location;
@@ -21,20 +22,24 @@ public:
     int moves;
     
 public:
-    Player();
+    Player(string name,int score, int location);
+    
     ~Player();
-//    void set_current_location(int location);
-//    int  get_current_location();
-//    
-//    int  get_score();
-//    void set_score(int score );
-//    
-//    void set_item(int item);
-//    int get_item();
-//    
-//    string get_info();
+    
+    void set_current_location(int location);
+    int  get_current_location();
+    
+    int  get_score();
+    void set_score(int score);
+    
+    void set_item(int item);
+    int get_item();
+   
+    string get_info();
 
+private:
+    
 };
-
+        
 #endif	/* PLAYER_H */
 
