@@ -1,7 +1,7 @@
 *~
 *.o
 *.obj
-nbproject
+nbproject/*
 .cproject
 .project
 output/*.o
