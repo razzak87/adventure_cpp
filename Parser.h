@@ -42,19 +42,26 @@ public:
     string fileData;
     Node* locations[LOCATIONS] ;
     map <string, int> vocabulary;
+    size_t start_idx;
+    size_t end_idx;
 
 public:
     Parser(string file);
     ~Parser();
-    void parse_locations(string line, int first_number=0);
-    void parse_vocabulary(string line);
+    void parse_locations(string &line, int first_number=0);
+    void parse_vocabulary(string &line);
+    void parse_travel_table(string &line, int first_number=0);
+    
+
     bool is_object(string key);
     bool is_special(string key);
     bool is_motion(string key);
     bool is_action(string key);
-
+    string tokenizer(string &line);
  private:
-     int getFirstNumberOf(string line);
+     //sting
+     
+     int getFirstNumberOf(string &line);
 };
 
 #endif	/* PARSER_H */

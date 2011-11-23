@@ -11,10 +11,10 @@ int main() {
     cout << "Application starting " << endl;
     Parser p("advent.dat");
 
-    for(int i=1; i < 140; i++){
-      //cout << p.locations[i]->get_clue() <<endl;
-      //cout << "--" << endl;
-    }
+//    for(int i=1; i < 140; i++){
+//      cout << p.locations[i]->get_clue() <<endl;
+//      cout << "--" << endl;
+//    }
     return EXIT_SUCCESS;
 }
 

@@ -16,6 +16,7 @@ Parser::Parser(string fileName) {
     ifstream dataFile;
     string line;
     string data;
+    start_idx = 0;
 
 
     for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
@@ -41,9 +42,9 @@ Parser::Parser(string fileName) {
                 case SHORT_DESC_SECTION:
                     break;
                 case TRAVEL_TABLE:
+                    parse_travel_table(line, first_number);
                     break;
                 case VOCABULARY:
-                    cout << line << endl;
                     parse_vocabulary(line);
                     break;
                 case ELEMENT_DESC:
@@ -76,14 +77,14 @@ Parser::~Parser() {
 
 
 
-int Parser::getFirstNumberOf(string line){
+int Parser::getFirstNumberOf(string &line){
     size_t tab_start = line.find_first_of("\t");
     return atoi (line.substr(0, tab_start).c_str());
 }
 
 
 
-void Parser::parse_locations(string line, int first_number ){
+void Parser::parse_locations(string &line, int first_number ){
 
     size_t tab_ends = line.find_first_of("\t") + 1; //END of that TAB CHAR
 
@@ -98,7 +99,7 @@ void Parser::parse_locations(string line, int first_number ){
 }
 
 
-void Parser::parse_vocabulary(string line){
+void Parser::parse_vocabulary(string &line){
 
     size_t tab = line.find_first_of("\t");
     int value  = atoi(line.substr(0,tab).c_str());
@@ -107,6 +108,52 @@ void Parser::parse_vocabulary(string line){
     if(key!="4") //for removing the section number
         this->vocabulary[key]=value;
 }
+
+
+                        
+/**
+ * This method parses the most important table
+ */
+void Parser::parse_travel_table(string &line, int first_number){
+    
+    string temp[11];
+    
+    for(int i=0 ; i < 12 ; i++) temp[i] = tokenizer(line);
+    
+    start_idx=0;
+    int sum = 0;
+    for(int i=0;i< 12 ;i++){
+       // for removing section number
+       // and -1 separator
+        
+       if(!temp[i].empty() && !temp[1].empty()){ 
+       //now table parsing beings
+           
+           
+           
+       }//ifEnds
+    }//forEnds
+    cout << sum << endl;
+}
+
+
+
+
+/*
+ * This method parses a line and returns 
+ * string tokens delimited by tab
+ */
+string Parser::tokenizer(string &line){
+    //Thank H.S
+    if(start_idx == string::npos) return "";
+    end_idx = line.find_first_of("\t", start_idx);
+    string tokn(line.substr(start_idx, end_idx- start_idx));
+    start_idx = line.find_first_not_of("\t", end_idx);
+    return tokn;
+}
+
+
+
 
 bool Parser::is_motion(string key){
     return this->vocabulary[key]/1000 == 0 ? true : false;
