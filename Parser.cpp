@@ -137,7 +137,7 @@ void Parser::parse_travel_table(string &line, int first_number){
         y = atoi(temp[1].c_str());
 
         //TODO change this to array no need for vector here
-        locations[first_number]->directions.push_back(y);
+        locations[first_number]->directions[locations[first_number]->count]=y;
         
         
         for (int i = 2; i < 10; i++) {

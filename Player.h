@@ -8,6 +8,7 @@
 #ifndef PLAYER_H
 #define	PLAYER_H
 #include <iostream>
+#include "Node.h"
 using namespace std;
 
 class Player {
@@ -15,13 +16,14 @@ class Player {
 public:
     int max_items;
     string answer;
+    int moves;
+
 private:
     string name;
     int score;
-    int current_location;
-    Node* state;
+    int current_location_idx;
+    Node* location;
     int current_item;
-    int moves;
     
 public:
     Player(string name,int score, int location);
@@ -41,10 +43,8 @@ public:
     int get_item();
     string get_input();
     
-    void go_to_next_location(
-    
-    
-    );
+    string format_answer();
+    void go_to_next_location();
     
     string get_info();
 

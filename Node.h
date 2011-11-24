@@ -6,7 +6,6 @@
  */
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
 #ifndef NODE_H
@@ -18,7 +17,7 @@ public:
     
     string clue;
     string short_clue;
-    vector<int> directions;
+    int directions[10];
     int active_verbs[10][10];
     int count;
 
