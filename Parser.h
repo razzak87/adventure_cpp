@@ -44,6 +44,7 @@ public:
     map <string, int> vocabulary;
     size_t start_idx;
     size_t end_idx;
+    unsigned int incrementor;
 
 public:
     Parser(string file);

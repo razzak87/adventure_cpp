@@ -42,10 +42,20 @@ void Player::set_score(int score){
 }
 
 
+
+
 int Player::get_score(){
     return this->score;
 }
 
 string Player::get_info(){
     return name;
+}
+
+
+/*
+ *
+ */
+void Player::go_to_next_location(){
+    cout << answer << endl;
 }

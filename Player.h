@@ -36,7 +36,9 @@ public:
     void set_item(int item);
     int get_item();
     string get_input();
-   
+    
+    void go_to_next_location();
+    
     string get_info();
 
 private:

@@ -12,11 +12,13 @@
 
 
 Parser::Parser(string fileName) {
-
+    
+    //INITIALIZTIONS
     ifstream dataFile;
     string line;
     string data;
     start_idx = 0;
+    incrementor=0;
 
 
     for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
@@ -37,32 +39,33 @@ Parser::Parser(string fileName) {
 
             switch(section){
                 case LONG_DESC_SECTION:
-                    //parse_locations(line, first_number);
+                    parse_locations(line, first_number);
                     break;
                 case SHORT_DESC_SECTION:
                     break;
                 case TRAVEL_TABLE:
                     parse_travel_table(line, first_number);
+                    incrementor=0;
                     break;
                 case VOCABULARY:
-                    //parse_vocabulary(line);
+                    parse_vocabulary(line);
                     break;
                 case ELEMENT_DESC:
-                    //parse_element_desc(line);
+                    parse_element_desc(line);
                     break;
                 case ELEMENT_LOCATION:
-                    //parse_element_location(line);
+                    parse_element_location(line);
                     break;
                 case ABBR_MSG:
                     parse_abbr_msg(line);
                     break;
                 case ACTIONS:
-                    //parse_actions(line);
+                    parse_actions(line);
                     break;
                 case LIQUID_ASSET:
                     break;
                 case CLASS_MSG:
-                    //parse_player_classification(line);
+                    parse_player_classification(line);
                     break;
                 case HINTS:
                     break;
@@ -134,12 +137,20 @@ void Parser::parse_travel_table(string &line, int first_number){
         x = atoi(temp[0].c_str()) ;
         y = atoi(temp[1].c_str());
         
-        m = y / 1000;
-        n = y % 1000;
         
-        if(n <= 300){
-            
-        }
+        locations[first_number]->directions.push_back(y);
+        
+        //for
+
+      }//ifEnds
+
+//        
+//        m = y / 1000;
+//        n = y % 1000;
+//        
+//        if(n <= 300){
+//            
+//        }
 //        else if( (n > 300) && (n <=500) ) {
 //            //use n-300 to go to special code;
 //           cout << "Not location"<<"\t"<< first_number <<"\t"<< y << endl;
@@ -148,8 +159,8 @@ void Parser::parse_travel_table(string &line, int first_number){
 //            cout << "section 6" << first_number << endl;
 //        
 //        }
-        
-        
+//        
+//        
 //        if (m==0) {             //unconditional jump
 //            cout << "Uncon "<< m << endl;
 //        } 
@@ -175,7 +186,6 @@ void Parser::parse_travel_table(string &line, int first_number){
 //            //default when no condition matches
 //            cout << "nothing matched" << endl;
 //        }
-    }//ifEnds
  
 }
 
