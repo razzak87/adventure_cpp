@@ -53,7 +53,8 @@ public:
     void parse_travel_table(string &line, int first_number=0);
     void parse_element_desc(string &line);
     void parse_element_location(string &line);
-    void parser_actions(string &line);
+    void parse_actions(string &line);
+    void parse_player_classification(string &line);
     
 
     bool is_object(string key);

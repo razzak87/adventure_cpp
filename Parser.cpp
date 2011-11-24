@@ -56,11 +56,12 @@ Parser::Parser(string fileName) {
                 case ABBR_MSG:
                     break;
                 case ACTIONS:
-                    parser_actions(line);
+                    parse_actions(line);
                     break;
                 case LIQUID_ASSET:
                     break;
                 case CLASS_MSG:
+                    parse_player_classification(line);
                     break;
                 case HINTS:
                     break;
@@ -196,20 +197,31 @@ void Parser::parse_element_location(string& line){
 }
 
 
-void Parser::parser_actions(string& line){
+void Parser::parse_actions(string& line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
             
-    if(!temp[1].empty()) 
-        cout << temp[0] << "\t" << temp[1] << endl;
+//    if(!temp[1].empty()) 
+//        cout << temp[0] << "\t" << temp[1] << endl;
 }
 
 
-/*
+
+void Parser::parse_player_classification(string& line){
+    string temp[2];
+    for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
+    start_idx=0;
+            
+//    if(!temp[1].empty()) 
+//        cout << temp[0] << "\t" << temp[1] << endl;
+}
+
+/*========================================
  * This method parses a line and returns 
  * string tokens delimited by tab
- */
+ ========================================= */
+
 string Parser::tokenizer(string &line){
     //Thank H.S
     if(start_idx == string::npos) return "";
