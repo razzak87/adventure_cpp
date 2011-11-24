@@ -63,7 +63,6 @@ public:
     bool is_motion(string key);
     bool is_action(string key);
     string tokenizer(string &line);
-    int prop_vlaue(int m);
  private:
      //sting
      

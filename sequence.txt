@@ -1,0 +1,13 @@
+1=>ROAD  =>2
+1=>ENTER =>3
+1=>DOWNS =>4
+1=>FORSE =>5
+
+5=>CONTI=>50005  render 5=>FORES=>
+
+
+
+
+west
+north
+north

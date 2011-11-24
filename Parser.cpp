@@ -128,13 +128,11 @@ void Parser::parse_travel_table(string &line, int first_number){
     for(int i=0 ; i < 12 ; i++) temp[i] = tokenizer(line);
     
     start_idx=0;
-    
-    int x, y , n , m ;
 
+        
     if(!temp[1].empty()){ 
         //now table parsing beings
-        x = atoi(temp[0].c_str()) ;
-        y = atoi(temp[1].c_str());
+        int y = atoi(temp[1].c_str());
 
         //TODO change this to array no need for vector here
         locations[first_number]->directions[locations[first_number]->count]=y;
@@ -147,50 +145,6 @@ void Parser::parse_travel_table(string &line, int first_number){
         locations[first_number]->count++;
     
     }//ifEnds
-
-//        
-//        m = y / 1000;
-//        n = y % 1000;
-//        
-//        if(n <= 300){
-//            
-//        }
-//        else if( (n > 300) && (n <=500) ) {
-//            //use n-300 to go to special code;
-//           cout << "Not location"<<"\t"<< first_number <<"\t"<< y << endl;
-//        }else{
-//            // n-500 to print section 6
-//            cout << "section 6" << first_number << endl;
-//        
-//        }
-//        
-//        
-//        if (m==0) {             //unconditional jump
-//            cout << "Uncon "<< m << endl;
-//        } 
-//        else if((m>0) and (m<100)){     // m% probability
-//           cout << "Probability " << m <<endl;
-//        }
-//        else if((m>100) and (m<=200)){  // must be carrying an Element=M-100
-//            cout << "carry" << (m-100) <<endl;
-//        }
-//        else if((m>200) and (m <= 300)){    // must carry element and same room=M-200
-//            cout << "room" << (m- 200) << endl;
-//            
-//        }else if((m >300) && (m <=400) && (prop_vlaue(m) != 0)){
-//            cout << "Prop value not 0" <<endl; 
-//        
-//        }else if((m>400)  && (m <=500) && (prop_vlaue(m)!=1)){
-//            cout << "Prop value not 1" << endl;
-//        
-//        }else if((m> 500) && (m <=600) && (prop_vlaue(m)!=2)){
-//            cout << "Prop value not 2" << endl;
-//        
-//        }else{
-//            //default when no condition matches
-//            cout << "nothing matched" << endl;
-//        }
- 
 }
 
 void Parser::parse_abbr_msg(string &line){
@@ -273,9 +227,6 @@ string Parser::tokenizer(string &line){
  =============================================================================*/
 
 
-int Parser::prop_vlaue(int m){
-    return m % 100 ;
-}
 
 
 bool Parser::is_motion(string key){

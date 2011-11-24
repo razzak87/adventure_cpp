@@ -50,6 +50,10 @@ public:
 
 private:
     
+    bool check_location(int indx);
+    int prop_vlaue(int m);
+
+    
 };
         
 #endif	/* PLAYER_H */
