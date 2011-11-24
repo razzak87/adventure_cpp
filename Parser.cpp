@@ -42,26 +42,27 @@ Parser::Parser(string fileName) {
                 case SHORT_DESC_SECTION:
                     break;
                 case TRAVEL_TABLE:
-                    //parse_travel_table(line, first_number);
+                    parse_travel_table(line, first_number);
                     break;
                 case VOCABULARY:
                     //parse_vocabulary(line);
                     break;
                 case ELEMENT_DESC:
-                    parse_element_desc(line);
+                    //parse_element_desc(line);
                     break;
                 case ELEMENT_LOCATION:
-                    parse_element_location(line);
+                    //parse_element_location(line);
                     break;
                 case ABBR_MSG:
+                    parse_abbr_msg(line);
                     break;
                 case ACTIONS:
-                    parse_actions(line);
+                    //parse_actions(line);
                     break;
                 case LIQUID_ASSET:
                     break;
                 case CLASS_MSG:
-                    parse_player_classification(line);
+                    //parse_player_classification(line);
                     break;
                 case HINTS:
                     break;
@@ -138,40 +139,55 @@ void Parser::parse_travel_table(string &line, int first_number){
         
         if(n <= 300){
             
-            
         }
+//        else if( (n > 300) && (n <=500) ) {
+//            //use n-300 to go to special code;
+//           cout << "Not location"<<"\t"<< first_number <<"\t"<< y << endl;
+//        }else{
+//            // n-500 to print section 6
+//            cout << "section 6" << first_number << endl;
+//        
+//        }
         
         
-        if (m==0) {             //unconditional jump
-            cout << "Uncon "<< m << endl;
-        } 
-        else if((m>0) and (m<100)){     // m% probability
-           cout << "Probability " << m <<endl;
-        }
-        else if((m>100) and (m<=200)){  // must be carrying an Element=M-100
-            cout << "carry" << (m-100) <<endl;
-        }
-        else if((m>200) and (m <= 300)){    // must carry element and same room=M-200
-            cout << "room" << (m- 200) << endl;
-            
-        }else if((m >300) && (m <=400) && (prop_vlaue(m) != 0)){
-            cout << "Prop value not 0" <<endl; 
-        
-        }else if((m>400)  && (m <=500) && (prop_vlaue(m)!=1)){
-            cout << "Prop value not 1" << endl;
-        
-        }else if((m> 500) && (m <=600) && (prop_vlaue(m)!=2)){
-            cout << "Prop value not 2" << endl;
-        
-        }else{
-            //default when no condition matches
-            cout << "nothing matched" << endl;
-        }
+//        if (m==0) {             //unconditional jump
+//            cout << "Uncon "<< m << endl;
+//        } 
+//        else if((m>0) and (m<100)){     // m% probability
+//           cout << "Probability " << m <<endl;
+//        }
+//        else if((m>100) and (m<=200)){  // must be carrying an Element=M-100
+//            cout << "carry" << (m-100) <<endl;
+//        }
+//        else if((m>200) and (m <= 300)){    // must carry element and same room=M-200
+//            cout << "room" << (m- 200) << endl;
+//            
+//        }else if((m >300) && (m <=400) && (prop_vlaue(m) != 0)){
+//            cout << "Prop value not 0" <<endl; 
+//        
+//        }else if((m>400)  && (m <=500) && (prop_vlaue(m)!=1)){
+//            cout << "Prop value not 1" << endl;
+//        
+//        }else if((m> 500) && (m <=600) && (prop_vlaue(m)!=2)){
+//            cout << "Prop value not 2" << endl;
+//        
+//        }else{
+//            //default when no condition matches
+//            cout << "nothing matched" << endl;
+//        }
     }//ifEnds
  
 }
 
-
+void Parser::parse_abbr_msg(string &line){
+    //cout  << line << endl;
+    string temp[2];
+    for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
+    start_idx=0;
+            
+//    if(!temp[1].empty()) 
+//        cout << temp[0] << "=>" << temp[1] << endl;
+}
 
 
 

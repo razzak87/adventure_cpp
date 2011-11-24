@@ -55,6 +55,7 @@ public:
     void parse_element_location(string &line);
     void parse_actions(string &line);
     void parse_player_classification(string &line);
+    void parse_abbr_msg(string &line);
     
 
     bool is_object(string key);
