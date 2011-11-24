@@ -14,6 +14,7 @@ class Player {
     
 public:
     int max_items;
+    string answer;
 private:
     string name;
     int score;
@@ -34,6 +35,7 @@ public:
     
     void set_item(int item);
     int get_item();
+    string get_input();
    
     string get_info();
 

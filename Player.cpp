@@ -15,6 +15,9 @@ Player::Player(string name, int score, int location){
 
 Player::~Player(){}
 
+string Player::get_input(){
+    return answer;
+}
 
 void Player::set_current_location(int location){
     this->current_location = location;

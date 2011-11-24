@@ -19,8 +19,8 @@
 #define TRAVEL_TABLE            2
 #define VOCABULARY              3
 #define ELEMENT_DESC            4
-#define ELEMENT_LOCATION        5
-#define ABBR_MSG                6
+#define ELEMENT_LOCATION        6
+#define ABBR_MSG                5
 #define ACTIONS                 7
 #define LIQUID_ASSET            8
 #define CLASS_MSG               9
@@ -51,6 +51,9 @@ public:
     void parse_locations(string &line, int first_number=0);
     void parse_vocabulary(string &line);
     void parse_travel_table(string &line, int first_number=0);
+    void parse_element_desc(string &line);
+    void parse_element_location(string &line);
+    void parser_actions(string &line);
     
 
     bool is_object(string key);
@@ -58,6 +61,7 @@ public:
     bool is_motion(string key);
     bool is_action(string key);
     string tokenizer(string &line);
+    int prop_vlaue(int m);
  private:
      //sting
      
