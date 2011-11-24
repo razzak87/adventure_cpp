@@ -18,7 +18,6 @@ Parser::Parser(string fileName) {
     string line;
     string data;
     start_idx = 0;
-    incrementor=0;
 
 
     for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
@@ -45,7 +44,7 @@ Parser::Parser(string fileName) {
                     break;
                 case TRAVEL_TABLE:
                     parse_travel_table(line, first_number);
-                    incrementor=0;
+
                     break;
                 case VOCABULARY:
                     parse_vocabulary(line);
@@ -133,16 +132,21 @@ void Parser::parse_travel_table(string &line, int first_number){
     int x, y , n , m ;
 
     if(!temp[1].empty()){ 
-    //now table parsing beings
+        //now table parsing beings
         x = atoi(temp[0].c_str()) ;
         y = atoi(temp[1].c_str());
-        
-        
+
+        //TODO change this to array no need for vector here
         locations[first_number]->directions.push_back(y);
         
-        //for
-
-      }//ifEnds
+        
+        for (int i = 2; i < 10; i++) {
+            locations[first_number]->active_verbs[locations[first_number]->count][i-2]= atoi(temp[i].c_str());
+        }
+        
+        locations[first_number]->count++;
+    
+    }//ifEnds
 
 //        
 //        m = y / 1000;

@@ -19,6 +19,8 @@ public:
     string clue;
     string short_clue;
     vector<int> directions;
+    int active_verbs[10][10];
+    int count;
 
     Node(string clue);
     ~Node();

@@ -19,6 +19,7 @@ private:
     string name;
     int score;
     int current_location;
+    Node* state;
     int current_item;
     int moves;
     
@@ -33,11 +34,17 @@ public:
     int  get_score();
     void set_score(int score);
     
+    Node* get_location();
+    void set_location(Node* loc);
+    
     void set_item(int item);
     int get_item();
     string get_input();
     
-    void go_to_next_location();
+    void go_to_next_location(
+    
+    
+    );
     
     string get_info();
 

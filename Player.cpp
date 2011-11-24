@@ -52,10 +52,18 @@ string Player::get_info(){
     return name;
 }
 
+Node Player::get_location(){
+    return this->state;
+}
+
+void Player::set_location(Node* loc){
+    this->state = loc;
+}
 
 /*
  *
  */
 void Player::go_to_next_location(){
-    cout << answer << endl;
+    
+    
 }

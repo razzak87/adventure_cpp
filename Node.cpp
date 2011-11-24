@@ -3,12 +3,14 @@
 
 Node::Node(string clue_word){
     clue = clue_word;
+    count = 0;
 }
 
 Node::~Node(){}
 
 void Node::set_clue(string clue){
     this->clue = clue;
+    
 }
 
 void set_short_clue(string short_clue){
