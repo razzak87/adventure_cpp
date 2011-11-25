@@ -31,6 +31,7 @@
 #include <iostream>
 #include <map>
 #include "Node.h"
+#include "Element.h"
 
 
 using namespace std;
@@ -41,6 +42,10 @@ class Parser {
 public:
     string fileData;
     Node* locations[LOCATIONS] ;
+    Element* elements[65];
+    int element_counter;
+    int ec;
+    
     map <string, int> vocabulary;
     size_t start_idx;
     size_t end_idx;

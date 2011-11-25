@@ -18,6 +18,7 @@ Parser::Parser(string fileName) {
     string line;
     string data;
     start_idx = 0;
+    element_counter=0;
 
 
     for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
@@ -164,20 +165,42 @@ void Parser::parse_element_desc(string &line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-            
-    //if(!temp[1].empty()) 
-        //cout << temp[0] << "=>" << temp[1] << endl;
+    
+    int element_id = atoi(temp[0].c_str());
+    if(!temp[1].empty()){
+       //cout << temp[0] << "=>" << temp[1] << endl;
+        if((element_id >0) && (element_id < 66)){
+            elements[element_id]= new Element(temp[1]); 
+            element_counter=element_id;
+        }else{ 
+            //element_id is now 3DIGIT number
+            //adds descriptions blocks with index
+            elements[element_counter]->messages[element_id/100] = temp[1];
+        }
+        
+        cout << "COUNTER:\t" << element_counter <<"\t" << elements[element_counter]->description << endl; 
+    }
 }
 
 
 
 void Parser::parse_element_location(string& line){
-//    string temp[3];
-//    for(int i=0 ; i < 3 ; i++) temp[i] = tokenizer(line);
-//    start_idx=0;
-//            
-//    if(!temp[1].empty()) 
-//        cout << temp[0] << "\t" << temp[1] << "\t"<< temp[2] << endl;
+    string temp[3];
+    for(int i=0 ; i < 3 ; i++) temp[i] = tokenizer(line);
+    start_idx=0;
+    
+    int count=0;
+    
+    if(!temp[1].empty()){
+        int element_id = atoi(temp[0].c_str());
+        int location_idx = atoi(temp[1].c_str());
+        int secon_loc_idx = atoi(temp[2].c_str());
+        
+        if(element_id > 0 && element_id != 17 && element_id!=18) { 
+            //TOOK me 3hr solve this because there is no index 17 and 18 why ???
+            cout << location_idx << "\t" << element_id<<"\t" << elements[element_id]->description << "\t"<< secon_loc_idx << endl;
+        }
+    }
 }
 
 

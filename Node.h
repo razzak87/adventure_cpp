@@ -5,11 +5,16 @@
  * Created on November 20, 2011, 8:42 AM
  */
 
-#include <iostream>
-using namespace std;
+
 
 #ifndef NODE_H
 #define	NODE_H
+
+
+#include <iostream>
+#include "Element.h"
+using namespace std;
+
 
 class Node{
     
@@ -20,6 +25,8 @@ public:
     int directions[10];
     int active_verbs[10][10];
     int count;
+    int needed_item;
+    Element* element[5];
 
     Node(string clue);
     ~Node();
