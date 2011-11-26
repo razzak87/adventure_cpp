@@ -12,13 +12,16 @@
 
 
 Parser::Parser(string fileName) {
-    
+
     //INITIALIZTIONS
     ifstream dataFile;
     string line;
     string data;
     start_idx = 0;
     element_counter=0;
+
+    elements[17]=new Element(">$<");
+    elements[18]=new Element(">$<");
 
 
     for(int i=0 ; i < 141; i++) locations[i] = NULL; //Thanks Charlie
@@ -45,7 +48,6 @@ Parser::Parser(string fileName) {
                     break;
                 case TRAVEL_TABLE:
                     parse_travel_table(line, first_number);
-
                     break;
                 case VOCABULARY:
                     parse_vocabulary(line);
@@ -118,33 +120,33 @@ void Parser::parse_vocabulary(string &line){
 }
 
 
-                        
+
 /**
  * This method parses the most important table
  */
 void Parser::parse_travel_table(string &line, int first_number){
-    
+
     string temp[11];
-    
+
     for(int i=0 ; i < 12 ; i++) temp[i] = tokenizer(line);
-    
+
     start_idx=0;
 
-        
-    if(!temp[1].empty()){ 
+
+    if(!temp[1].empty()){
         //now table parsing beings
         int y = atoi(temp[1].c_str());
 
         //TODO change this to array no need for vector here
         locations[first_number]->directions[locations[first_number]->count]=y;
-        
-        
+
+
         for (int i = 2; i < 10; i++) {
             locations[first_number]->active_verbs[locations[first_number]->count][i-2]= atoi(temp[i].c_str());
         }
-        
+
         locations[first_number]->count++;
-    
+
     }//ifEnds
 }
 
@@ -153,8 +155,8 @@ void Parser::parse_abbr_msg(string &line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-            
-//    if(!temp[1].empty()) 
+
+//    if(!temp[1].empty())
 //        cout << temp[0] << "=>" << temp[1] << endl;
 }
 
@@ -165,20 +167,20 @@ void Parser::parse_element_desc(string &line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-    
+
     int element_id = atoi(temp[0].c_str());
     if(!temp[1].empty()){
        //cout << temp[0] << "=>" << temp[1] << endl;
-        if((element_id >0) && (element_id < 66)){
-            elements[element_id]= new Element(temp[1]); 
+        if((element_id >0) && (element_id < 65)){
+            elements[element_id]= new Element(temp[1]);
             element_counter=element_id;
-        }else{ 
+            elements[element_id]->id = element_id;
+        }else{
             //element_id is now 3DIGIT number
             //adds descriptions blocks with index
             elements[element_counter]->messages[element_id/100] = temp[1];
         }
-        
-        cout << "COUNTER:\t" << element_counter <<"\t" << elements[element_counter]->description << endl; 
+
     }
 }
 
@@ -188,18 +190,26 @@ void Parser::parse_element_location(string& line){
     string temp[3];
     for(int i=0 ; i < 3 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-    
+
     int count=0;
-    
+
     if(!temp[1].empty()){
         int element_id = atoi(temp[0].c_str());
         int location_idx = atoi(temp[1].c_str());
         int secon_loc_idx = atoi(temp[2].c_str());
-        
-        if(element_id > 0 && element_id != 17 && element_id!=18) { 
+
+        if(element_id > 0 && element_id != 17 && element_id !=18) {
             //TOOK me 3hr solve this because there is no index 17 and 18 why ???
-            cout << location_idx << "\t" << element_id<<"\t" << elements[element_id]->description << "\t"<< secon_loc_idx << endl;
+            if(location_idx>0){
+                locations[location_idx]->items.push_back(elements[element_id]);
+            }
+            if(secon_loc_idx>0){
+                locations[secon_loc_idx]->items.push_back(elements[element_id]);
+            }
+
         }
+        location_idx = 0;
+        secon_loc_idx=0;
     }
 }
 
@@ -208,9 +218,10 @@ void Parser::parse_actions(string& line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-            
-//    if(!temp[1].empty()) 
-//        cout << temp[0] << "\t" << temp[1] << endl;
+
+   if(!temp[1].empty()){
+        action_verbs[atoi(temp[0].c_str())] = atoi(temp[1].c_str());
+   }
 }
 
 
@@ -219,22 +230,22 @@ void Parser::parse_player_classification(string& line){
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-            
-//    if(!temp[1].empty()) 
+
+//    if(!temp[1].empty())
 //        cout << temp[0] << "\t" << temp[1] << endl;
 }
 
 /*========================================
- * This method parses a line and returns 
+ * This method parses a line and returns
  * string tokens delimited by tab
  ========================================= */
 
-string Parser::tokenizer(string &line){
-    //Thank H.S
+string Parser::tokenizer(string &line, string delimiter){
+    //Thanks H.S
     if(start_idx == string::npos) return "";
-    end_idx = line.find_first_of("\t", start_idx);
+    end_idx = line.find_first_of(delimiter , start_idx);
     string tokn(line.substr(start_idx, end_idx- start_idx));
-    start_idx = line.find_first_not_of("\t", end_idx);
+    start_idx = line.find_first_not_of(delimiter, end_idx);
     return tokn;
 }
 
@@ -246,7 +257,7 @@ string Parser::tokenizer(string &line){
 
 
 /*==============================================================================
- *      THIS SECTION HOLDS ALL POSSIBLE GAME LOGIC 
+ *      THIS SECTION HOLDS ALL POSSIBLE GAME LOGIC
  =============================================================================*/
 
 

@@ -44,8 +44,8 @@ public:
     Node* locations[LOCATIONS] ;
     Element* elements[65];
     int element_counter;
-    int ec;
-    
+    int action_verbs[32];
+
     map <string, int> vocabulary;
     size_t start_idx;
     size_t end_idx;
@@ -61,16 +61,16 @@ public:
     void parse_actions(string &line);
     void parse_player_classification(string &line);
     void parse_abbr_msg(string &line);
-    
+
 
     bool is_object(string key);
     bool is_special(string key);
     bool is_motion(string key);
     bool is_action(string key);
-    string tokenizer(string &line);
+    string tokenizer(string &line , string d="\t");
  private:
      //sting
-     
+
      int getFirstNumberOf(string &line);
 };
 

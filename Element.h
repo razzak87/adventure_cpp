@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Element.h
  * Author: rajib
  *
@@ -15,8 +15,11 @@ public:
     string description;
     string messages[6];
     bool  moveable;
+    int counter;
+    int id;
     Element(string desc);
     ~Element();
+
 private:
 
 };
