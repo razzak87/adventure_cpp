@@ -151,13 +151,13 @@ void Parser::parse_travel_table(string &line, int first_number){
 }
 
 void Parser::parse_abbr_msg(string &line){
-    //cout  << line << endl;
     string temp[2];
     for(int i=0 ; i < 2 ; i++) temp[i] = tokenizer(line);
     start_idx=0;
-
-//    if(!temp[1].empty())
-//        cout << temp[0] << "=>" << temp[1] << endl;
+    int indx = atoi(temp[0].c_str());
+    if(!temp[1].empty()){
+        abbr_messages[indx] += temp[1];
+    }
 }
 
 

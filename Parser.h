@@ -45,6 +45,7 @@ public:
     Element* elements[65];
     int element_counter;
     int action_verbs[32];
+    string abbr_messages[202];
 
     map <string, int> vocabulary;
     size_t start_idx;

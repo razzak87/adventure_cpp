@@ -157,6 +157,5 @@ string Player::format_answer(){
     for (int i = 0; i != length ; i++) {
         verb[i] = toupper(verb[i]);
     }
-
     return verb;
 }

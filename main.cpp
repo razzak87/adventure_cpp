@@ -50,13 +50,20 @@ int main() {
 
         if(!player.verb.empty() && !player.noun.empty()){
             //player wants to take Elements
-
+            it = game.vocabulary.find(player.verb);
+            if(it!=game.vocabulary.end()){
+                if(game.is_action(player.verb) && game.is_object(player.noun)){
+                  cout << "action verb and object sequence" << endl;
+                }
+            }
         }else if(!player.verb.empty()){
             //player want to only move
             it = game.vocabulary.find(player.verb);
             if(it!=game.vocabulary.end()){
-               player.moves = game.vocabulary.find(player.verb)->second;
-               player.go_to_next_location();
+              if(game.is_motion(player.verb)){
+                 player.moves = game.vocabulary.find(player.verb)->second;
+                 player.go_to_next_location();
+              }
             }else{
                 cout << "dont understand that" << endl;
             }
