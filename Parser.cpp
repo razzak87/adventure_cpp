@@ -102,6 +102,7 @@ void Parser::parse_locations(string &line, int first_number ){
     if(!direction.empty()){
         if(locations[first_number]==NULL){
             locations[first_number]= new Node(direction);
+            locations[first_number]->id = first_number;
         }else{
             locations[first_number]->append(direction);
         }

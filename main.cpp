@@ -52,6 +52,7 @@ int main() {
         /*
          * User input handling & formatting
          */
+        cout << ">";
         getline(cin,player.verb);
         player.format_answer();
 
@@ -68,6 +69,7 @@ int main() {
          * player wants to take Elements
          */
         if(!player.verb.empty() && !player.noun.empty()){
+            cout << player.noun << endl;
             it = game.vocabulary.find(player.verb);
             if(it!=game.vocabulary.end()){
                 if(game.is_action(player.verb) && game.is_object(player.noun)){
@@ -80,7 +82,8 @@ int main() {
         /*
          * player want to only move
          */
-        }else if(!player.verb.empty()){
+        }else if(!player.verb.empty() && player.noun.empty()){
+          cout << "test" << endl;
             it = game.vocabulary.find(player.verb);
             if(it!=game.vocabulary.end()){
               if(game.is_motion(player.verb)){

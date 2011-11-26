@@ -27,6 +27,7 @@ public:
     int count;
     int needed_item;
     vector<Element*> items;
+    int id;
 
     Node(string clue);
     ~Node();
