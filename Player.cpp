@@ -151,6 +151,19 @@ int Player::prop_vlaue(int m){
 }
 
 
+void Player::carry_item(int item_id){
+
+    int item_size = this->location->items.size();
+    item_id = item_id % 1000;
+    for(int i=0 ; i < item_size; i++){
+        if(this->location->items[i]->id == item_id){
+            cout << "added " << endl;
+            this->carrying.push_back(this->location->items[i]);
+            break;
+        }
+    }
+    cout << this->carrying[0]->description;
+}
 
 string Player::format_answer(){
     int length = verb.length();

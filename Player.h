@@ -20,6 +20,7 @@ public:
     string verb;
     string noun;
     int moves;
+    vector<Element * > carrying;
 
 private:
     string name;
@@ -27,7 +28,6 @@ private:
     int current_location_idx;
     Node* location;
     int current_item;
-    vector<Element*> carrying;
 
 public:
     Player(string name,int score, int location);
@@ -51,6 +51,7 @@ public:
     void go_to_next_location();
 
     string get_info();
+    void carry_item(int element_id);
 
 private:
 
