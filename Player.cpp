@@ -103,15 +103,17 @@ bool Player::check_location(int indx){
                 status = true;
             }
             else if((m>0) and (m<100)){// m% probability
-
+                cout << " **** Dont understand what to do with probability" << endl;
             }
             else if((m>100) and (m<=200)){// must be carrying an Element=M-100
                 cout << "Object needed :) " << endl;
                 int item_id= m-100;
                 int item_size = this->carrying.size();
+
+                cout << item_size << "\t" << item_id << endl;
                 if(item_size > 0){
                   for(int i=0; i < item_size ; i++){
-                    if(this->carrying[i]->id == item_id ){
+                   if(this->carrying[i]->id == item_id ){
                         status = true; // make the jump
                     }
                   }
@@ -119,16 +121,29 @@ bool Player::check_location(int indx){
             }
             else if((m>200) and (m <= 300)){// must carry element and same room=M-200
                 cout << "room" << (m- 200) << endl;
+                int item_id= m-200;
+                int item_size = this->carrying.size();
+
+                cout << item_size << "\t" << item_id << endl;
+                if(item_size > 0){
+                  for(int i=0; i < item_size ; i++){
+                   if(this->carrying[i]->id == item_id ){
+                        status = true; // make the jump
+                    }
+                  }
+                }
 
             }else if((m >300) && (m <=400) && (prop_vlaue(m) != 0)){
                 cout << "Prop value not 0" <<endl;
+                status=true;
 
             }else if((m>400)  && (m <=500) && (prop_vlaue(m)!=1)){
                 cout << "Prop value not 1" << endl;
+                status=true;
 
             }else if((m> 500) && (m <=600) && (prop_vlaue(m)!=2)){
                 cout << "Prop value not 2" << endl;
-
+                status=true;
             }else{
                 //default when no condition matches
                 cout << "nothing matched" << endl;

@@ -16,12 +16,12 @@ int main() {
     advent_350+=" / \\|  \\| | | __| \\| |_ _| | | o \\ __| |_ / _// \\  \n";
     advent_350+="| o | o ) V | _|| \\\\ || || U |   / _|  __)\\_ \\ 0 |\n";
     advent_350+="|_n_|__/ \\_/|___|_|\\_||_||___|_|\\\\___| \\__/__/\\_/\n";
-
-    //cout << advent_350 <<endl;
+    advent_350+="\n               Rajib (raae10) -n- Razzak (morc10)\n";
+    cout << advent_350 <<endl;
 
     Parser game("advent.dat");
 
-    Player player("Rajib Ahmed", 0 , 1);
+    Player player("Rajib Ahmed", 0 , 3);
 
     map<string, int>::iterator it;
 
@@ -41,12 +41,12 @@ int main() {
          */
         int numer_of_items = player.get_location()->items.size();
         int items_carried = player.carrying.size();
+
         if(numer_of_items > 0){
             for (int i = 0; i < numer_of_items; i++) {
                 for(int j=0; j< items_carried ; j++){
                   if(player.carrying[j]->id == player.get_location()->items[i]->id){
-                    show_item=false;
-                    break;
+                    show_item=false; break;
                   }
                 }
                 if(show_item){
@@ -59,10 +59,12 @@ int main() {
         /*
          * User input handling & formatting
          */
-        cout << "~> ";
+        cout << "~> ";//REPL sign :)
         getline(cin,player.verb);
         player.format_answer();
 
+        //player.carrying.push_back(game.elements[110]);
+        //cout << player.carrying[0]->description << endl;
 
         game.start_idx=0;
         for(int i=0; i<3 ;i++){
@@ -94,6 +96,7 @@ int main() {
               if(game.is_motion(player.verb)){
                  player.moves = game.vocabulary.find(player.verb)->second;
                  player.go_to_next_location();
+
                  if(player.message_id>0){
                     cout << "*=> " << game.abbr_messages[player.message_id] << endl;
                     player.message_id=0;
