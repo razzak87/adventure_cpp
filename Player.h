@@ -20,6 +20,7 @@ public:
     string verb;
     string noun;
     int moves;
+    int message_id;
     vector<Element * > carrying;
 
 private:

@@ -51,7 +51,9 @@ public:
     size_t start_idx;
     size_t end_idx;
 
-public:
+
+
+//METHODS
     Parser(string file);
     ~Parser();
     void parse_locations(string &line, int first_number=0);
@@ -70,8 +72,6 @@ public:
     bool is_action(string key);
     string tokenizer(string &line , string d="\t");
  private:
-     //sting
-
      int getFirstNumberOf(string &line);
 };
 

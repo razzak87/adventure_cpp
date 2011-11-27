@@ -11,6 +11,7 @@ Player::Player(string name, int score, int location){
     this->name = name;
     this->score = score;
     this->current_location_idx = location;
+    this->message_id=0;
 }
 
 Player::~Player(){}
@@ -102,9 +103,10 @@ bool Player::check_location(int indx){
                 status = true;
             }
             else if((m>0) and (m<100)){// m% probability
-               cout << "Probability " << m <<endl;
+
             }
             else if((m>100) and (m<=200)){// must be carrying an Element=M-100
+                cout << "Object needed :) " << endl;
                 int item_id= m-100;
                 int item_size = this->carrying.size();
                 if(item_size > 0){
@@ -138,7 +140,7 @@ bool Player::check_location(int indx){
             status =false;
         }else{
             // n-500 to print section 6 and stay in same location
-
+            this->message_id=(n - 500);
             status= false;
         }
 
@@ -161,7 +163,7 @@ void Player::carry_item(int item_id){
             break;
         }
     }
-    this->noun="";
+    this->noun=""; //setting to empty to fallback to if-else ladder
     cout << this->carrying[0]->description << endl;
 }
 

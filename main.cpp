@@ -10,7 +10,14 @@ using namespace std;
 
 
 int main() {
-    cout << "Application starting " << endl;
+
+    string
+    advent_350 ="  _  __  _ _ ___ _  _ ___ _ _ ___ ___   _____  _\n";
+    advent_350+=" / \\|  \\| | | __| \\| |_ _| | | o \\ __| |_ / _// \\  \n";
+    advent_350+="| o | o ) V | _|| \\\\ || || U |   / _|  __)\\_ \\ 0 |\n";
+    advent_350+="|_n_|__/ \\_/|___|_|\\_||_||___|_|\\\\___| \\__/__/\\_/\n";
+
+    //cout << advent_350 <<endl;
 
     Parser game("advent.dat");
 
@@ -52,7 +59,7 @@ int main() {
         /*
          * User input handling & formatting
          */
-        cout << ">";
+        cout << "~> ";
         getline(cin,player.verb);
         player.format_answer();
 
@@ -69,7 +76,6 @@ int main() {
          * player wants to take Elements
          */
         if(!player.verb.empty() && !player.noun.empty()){
-            cout << player.noun << endl;
             it = game.vocabulary.find(player.verb);
             if(it!=game.vocabulary.end()){
                 if(game.is_action(player.verb) && game.is_object(player.noun)){
@@ -82,13 +88,16 @@ int main() {
         /*
          * player want to only move
          */
-        }else if(!player.verb.empty() && player.noun.empty()){
-          cout << "test" << endl;
+        }else if(!player.verb.empty()){
             it = game.vocabulary.find(player.verb);
             if(it!=game.vocabulary.end()){
               if(game.is_motion(player.verb)){
                  player.moves = game.vocabulary.find(player.verb)->second;
                  player.go_to_next_location();
+                 if(player.message_id>0){
+                    cout << "*=> " << game.abbr_messages[player.message_id] << endl;
+                    player.message_id=0;
+                 }
               }
             }else{
                 cout << "dont understand that" << endl;
